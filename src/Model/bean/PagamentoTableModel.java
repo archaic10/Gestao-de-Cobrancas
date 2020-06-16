@@ -5,7 +5,8 @@
  */
 package Model.bean;
 
-import View.PagamentoCons;
+
+import View.table.PagamentoTable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,9 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author vitor
  */
 public class PagamentoTableModel {
-    private final PagamentoCons view;
+    private final PagamentoTable view;
 
-    public PagamentoTableModel(PagamentoCons view) {
+    public PagamentoTableModel(PagamentoTable view) {
         this.view = view;
     }
     public void popularTabela(ArrayList<Pagamento> dadosPagamento){

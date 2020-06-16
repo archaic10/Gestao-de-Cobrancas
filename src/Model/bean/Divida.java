@@ -10,6 +10,8 @@ import Model.dao.DividaDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,5 +151,27 @@ public class Divida {
         }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    public ArrayList<Divida> listarDivida(){
+        DividaDAO dividaDao = new DividaDAO();
+        try {
+            return dividaDao.obterTodos("Todos");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;  
+    }
+    public ArrayList<Divida> buscarDevedorCPF(String documento, String filtro){
+        DividaDAO dividaDao = new DividaDAO();
+        try {      
+            if(documento.equals("           ")){
+                return dividaDao.obterTodos(filtro);
+            }else{
+                return dividaDao.obter(filtro, documento);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;  
     }
 }

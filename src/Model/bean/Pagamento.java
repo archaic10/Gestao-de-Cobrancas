@@ -11,7 +11,10 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,4 +108,55 @@ public class Pagamento {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public ArrayList<Pagamento> listarPagamento(){
+        PagamentoDAO pagamentoDAO = new PagamentoDAO();
+        try{
+            return pagamentoDAO.obterTodos();
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;    
+    }
+    public ArrayList<Pagamento> buscarPorDocumento(String documento){
+        PagamentoDAO pagamentoDAO = new PagamentoDAO();
+        try{
+            if(documento.equals("           ")){
+                return pagamentoDAO.obterTodos();
+            }else{
+                return pagamentoDAO.obter(documento);
+            }
+            
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;    
+    }
+    public ArrayList<Divida> obterDividas(String documento){
+        DividaDAO divida = new DividaDAO();
+        
+        try {
+            return divida.obter("", documento);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null; 
+    }
+    public String consultarFaturamento(String dataIni, String dataF) throws ParseException{
+        PagamentoDAO pagamentoDao = new PagamentoDAO();
+         String formato = "dd/MM/yyyy";
+         String dataInicio =dataIni;
+         String dataFim =dataF;
+        Date dataInicial = new SimpleDateFormat(formato).parse(dataInicio);
+        Date dataFinal = new SimpleDateFormat(formato).parse(dataFim);
+        String resultado = "";
+        
+        try {
+            for(Pagamento pagamentos : pagamentoDao.obterFaturamento(dataInicial,dataFinal)){
+                resultado = "O faturamento entre "+dataInicio+" e "+dataFim+" é : "+pagamentos.getValorpago();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+         return resultado;
+    } 
 }

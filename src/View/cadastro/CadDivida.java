@@ -63,11 +63,11 @@ public class CadDivida extends javax.swing.JInternalFrame {
 
 
     public JLabel getjLabel7() {
-        return jLabel7;
+        return lblTitulo;
     }
 
     public void setjLabel7(JLabel jLabel7) {
-        this.jLabel7 = jLabel7;
+        this.lblTitulo = jLabel7;
     }
 
     public JLabel getLblCodigo() {
@@ -102,14 +102,7 @@ public class CadDivida extends javax.swing.JInternalFrame {
         this.lblDevedor = lblDevedor;
     }
 
-    public JComboBox<String> getSlcFiltro() {
-        return slcID;
-    }
-
-    public void setSlcFiltro(JComboBox<String> slcFiltro) {
-        this.slcID = slcFiltro;
-    }
-    
+   
 
     public JLabel getLblDivida() {
         return lblDivida;
@@ -208,7 +201,7 @@ public class CadDivida extends javax.swing.JInternalFrame {
         btnSalvarDivida = new javax.swing.JButton();
         lblDivida = new javax.swing.JLabel();
         slcDevedor = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         txtDivida = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         lblCredor = new javax.swing.JLabel();
@@ -216,10 +209,7 @@ public class CadDivida extends javax.swing.JInternalFrame {
         btnPdocumento = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        slcID = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
-        btnLista = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 255));
         setClosable(true);
@@ -258,9 +248,9 @@ public class CadDivida extends javax.swing.JInternalFrame {
         lblDivida.setForeground(new java.awt.Color(0, 0, 0));
         lblDivida.setText("Dívida:");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Cadastrar Dívida");
+        lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setText("Cadastrar Dívida");
 
         txtDivida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,39 +294,12 @@ public class CadDivida extends javax.swing.JInternalFrame {
             }
         });
 
-        slcID.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                slcIDItemStateChanged(evt);
-            }
-        });
-        slcID.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                slcIDPropertyChange(evt);
-            }
-        });
-        slcID.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
-                slcIDVetoableChange(evt);
-            }
-        });
-
-        jLabel1.setText("Nº Registros");
-
         btnExcluir.setBackground(new java.awt.Color(255, 0, 0));
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluircadastrarCliente(evt);
-            }
-        });
-
-        btnLista.setBackground(new java.awt.Color(0, 102, 204));
-        btnLista.setForeground(new java.awt.Color(255, 255, 255));
-        btnLista.setText("Lista");
-        btnLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListacadastrarCliente(evt);
             }
         });
 
@@ -361,13 +324,7 @@ public class CadDivida extends javax.swing.JInternalFrame {
                             .addComponent(slcCredor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtPdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(slcID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpar))
@@ -383,30 +340,25 @@ public class CadDivida extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSalvarDivida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 115, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblTitulo)
                     .addGap(0, 227, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPdocumento)
-                    .addComponent(jLabel1))
+                .addComponent(btnPdocumento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnLimpar)
-                    .addComponent(slcID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLimpar))
                 .addGap(18, 18, 18)
                 .addComponent(lblCodigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -428,16 +380,14 @@ public class CadDivida extends javax.swing.JInternalFrame {
                     .addComponent(txtDataAtualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(slcDevedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSalvarDivida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvarDivida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 12, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblTitulo)
                     .addGap(0, 355, Short.MAX_VALUE)))
         );
 
@@ -462,7 +412,9 @@ public class CadDivida extends javax.swing.JInternalFrame {
             devedorPessoa.setNomePessoa(this.getSlcDevedor().getSelectedItem().toString());
             divida.setCredor(credorPessoa);
             divida.setDevedor(devedorPessoa);
-            divida.setValorDivida(Double.parseDouble(this.getTxtDivida().getText()));
+            String valor = this.getTxtDivida().getText().replace(".", "");
+            valor = valor.replace(",",".");
+            divida.setValorDivida(Double.parseDouble(valor));
             divida.setDataAtualizacao(data);
             if(this.getTxtCodigoDivida().getText().equals("")){
                 divida.inserir();
@@ -483,88 +435,51 @@ public class CadDivida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDividaActionPerformed
 
     private void btnPesquisarpesquisarCpfCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarpesquisarCpfCliente
-        // TODO add your handling code here: 
-        // paramos aqui
+        // TODO add your handling code here:         
         Divida divida = new Divida();
         String documento = this.getTxtPdocumento().getText().replace(".","");
         documento = documento.replace("-", "");
-        
-        int n = divida.consultar(documento).size();
-        if(n > 1){
-            System.out.println("revele "+this.registros);
-            if(this.registros != null){
-                for(int x = 0; x <=this.getSlcID().getItemCount(); x++){                                   
-                    this.getSlcID().removeItemAt(x);    
-                    System.out.println("tamanho: "+this.getSlcID().getItemCount());
-                    
-                }
-            }
-          
-            System.out.println("Revele: "+this.getSlcID().getSelectedItem());
-            this.registros = new ArrayList<Integer>(n);
-            
-            int c = 0; 
-            for(Divida dividas : divida.consultar(documento)){
-                this.registros.add(dividas.getIdDivida()); 
-                c++;
-                
-                this.getSlcID().addItem(""+c);
-                
-            }
-            if(this.getSlcID().getSelectedItem()!= null){
-                int selecionado = Integer.parseInt(this.getSlcID().getSelectedItem().toString());
-                
-                for(Divida dv : divida.consultar(documento,this.registros.get(selecionado-1)) ){
-                    this.getTxtCodigoDivida().setText(Integer.toString(dv.getIdDivida()));
-                     SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
-                    this.getTxtDataAtualizacao().setText(formatador.format(dv.getDataAtualizacao()));
-                    this.getTxtDivida().setText(Double.toString(dv.getValorDivida()));
-                    this.getSlcCredor().setSelectedItem(dv.getCredor().getNomePessoa());
-                    this.getSlcDevedor().setSelectedItem(dv.getDevedor().getNomePessoa());
-                }
-                        
-            }
-            JOptionPane.showMessageDialog(null, "O cliente possui "+n+" dividas selecione a dívida que deseja pesquisar pela ordem no select ao lado", "Erro", JOptionPane.ERROR_MESSAGE);
-        }else{
-            for(Divida dv : divida.consultar(documento) ){
-                this.getTxtCodigoDivida().setText(Integer.toString(dv.getIdDivida()));
-                 SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
-                this.getTxtDataAtualizacao().setText(formatador.format(dv.getDataAtualizacao()));
-                this.getTxtDivida().setText(Double.toString(dv.getValorDivida()));
-                this.getSlcCredor().setSelectedItem(dv.getCredor().getNomePessoa());
-                this.getSlcDevedor().setSelectedItem(dv.getDevedor().getNomePessoa());
-            }
+        for(Divida dv : divida.consultar(documento) ){
+            this.getTxtCodigoDivida().setText(Integer.toString(dv.getIdDivida()));
+             SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
+            this.getTxtDataAtualizacao().setText(formatador.format(dv.getDataAtualizacao()));
+            this.getTxtDivida().setText(Double.toString(dv.getValorDivida()).replace(".",","));
+            this.getSlcCredor().setSelectedItem(dv.getCredor().getNomePessoa());
+            this.getSlcDevedor().setSelectedItem(dv.getDevedor().getNomePessoa());
         }
-        
-        
-
+        if(this.getTxtCodigoDivida().getText().equals("")){
+            this.getBtnSalvarDivida().setText("Salvar");
+            this.getLblTitulo().setText("Cadastrar Dívida");
+        }else{
+            this.getBtnSalvarDivida().setText("Alterar");
+            this.getLblTitulo().setText("Alterar Dívida");
+        }
     }//GEN-LAST:event_btnPesquisarpesquisarCpfCliente
 
-    public JComboBox<String> getSlcID() {
-        return slcID;
-    }
-
-    public void setSlcID(JComboBox<String> slcID) {
-        this.slcID = slcID;
-    }
+    
 
     private void btnLimparpesquisarCpfCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparpesquisarCpfCliente
         // TODO add your handling code here:
-   
+        
+        this.getTxtCodigoDivida().setEditable(false);
+        
+        this.getTxtCodigoDivida().setText("");
+        this.getTxtDataAtualizacao().setText("");
+        this.getTxtDivida().setText("");
+        this.getTxtPdocumento().setText("");
+        this.getSlcCredor().setSelectedItem("Vitor França");
+         this.getSlcDevedor().setSelectedItem("Vitor França");
+         this.getBtnSalvarDivida().setText("Salvar");
+         this.getLblTitulo().setText("Cadastrar Dívida");
     }//GEN-LAST:event_btnLimparpesquisarCpfCliente
 
-    private void slcIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_slcIDItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_slcIDItemStateChanged
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
 
-    private void slcIDPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_slcIDPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_slcIDPropertyChange
-
-    private void slcIDVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_slcIDVetoableChange
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_slcIDVetoableChange
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
 
     private void btnExcluircadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluircadastrarCliente
         // TODO add your handling code here:
@@ -576,10 +491,6 @@ public class CadDivida extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluircadastrarCliente
 
-    private void btnListacadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListacadastrarCliente
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListacadastrarCliente
-
     public JButton getBtnExcluir() {
         return btnExcluir;
     }
@@ -588,32 +499,23 @@ public class CadDivida extends javax.swing.JInternalFrame {
         this.btnExcluir = btnExcluir;
     }
 
-    public JButton getBtnLista() {
-        return btnLista;
-    }
 
-    public void setBtnLista(JButton btnLista) {
-        this.btnLista = btnLista;
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnLista;
     private javax.swing.JLabel btnPdocumento;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarDivida;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCredor;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDevedor;
     private javax.swing.JLabel lblDivida;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JComboBox<String> slcCredor;
     private javax.swing.JComboBox<String> slcDevedor;
-    private javax.swing.JComboBox<String> slcID;
     private javax.swing.JTextField txtCodigoDivida;
     private javax.swing.JFormattedTextField txtDataAtualizacao;
     private javax.swing.JTextField txtDivida;

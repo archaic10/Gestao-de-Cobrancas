@@ -8,6 +8,8 @@ package Model.bean;
 import Model.dao.ClienteDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -164,5 +166,29 @@ public class Cliente {
         }
         return null;
     }   
+    public ArrayList<Cliente> listarCliente(){
+        ClienteDAO cl = new ClienteDAO();
+        try {
+            return cl.obterTodos();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+    public ArrayList<Cliente>  buscarClienteDocumento(String documento){
+        ClienteDAO cl = new ClienteDAO(); 
+        
+        try {
+            
+            if(documento.equals("           ")){
+                return cl.obterTodos();
+            }else{
+                return cl.consultarPorCpf(documento);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
     
 }

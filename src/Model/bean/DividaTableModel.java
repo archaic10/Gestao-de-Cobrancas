@@ -5,7 +5,8 @@
  */
 package Model.bean;
 
-import View.DividaCons;
+
+import View.table.DividaTable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -15,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author vitor
  */
 public class DividaTableModel {
-    private final DividaCons view;
+    private final DividaTable view;
 
-    public DividaTableModel(DividaCons view) {
+    public DividaTableModel(DividaTable view) {
         this.view = view;
     }
     public void popularTabela(ArrayList<Divida> dadosDivida){

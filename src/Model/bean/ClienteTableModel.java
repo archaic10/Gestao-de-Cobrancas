@@ -5,7 +5,8 @@
  */
 package Model.bean;
 
-import View.ClienteCons;
+
+import View.table.ClienteTable;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -16,8 +17,8 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class ClienteTableModel {
-private final ClienteCons view;
-    public ClienteTableModel(ClienteCons view) {
+private final ClienteTable view;
+    public ClienteTableModel(ClienteTable view) {
         this.view = view;
     }
     

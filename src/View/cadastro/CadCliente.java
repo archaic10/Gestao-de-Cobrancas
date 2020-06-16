@@ -6,12 +6,12 @@
 package View.cadastro;
 
 import Model.bean.Cliente;
-import View.consulta.TabelaCliente;
+import View.TelaInicial;
+import View.table.ClienteTable;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,7 +71,6 @@ public class CadCliente extends javax.swing.JInternalFrame{
         txtNome = new javax.swing.JTextField();
         txtCodigoCliente = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
-        btnLista = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         txtPdocumento = new javax.swing.JFormattedTextField();
         btnPdocumento = new javax.swing.JLabel();
@@ -143,7 +142,7 @@ public class CadCliente extends javax.swing.JInternalFrame{
 
         lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo.setText("Cliente");
+        lblTitulo.setText("Cadastrar Cliente");
 
         lblEndereco.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblEndereco.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,15 +173,6 @@ public class CadCliente extends javax.swing.JInternalFrame{
         lblCodigo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblCodigo.setForeground(new java.awt.Color(0, 0, 0));
         lblCodigo.setText("Código:");
-
-        btnLista.setBackground(new java.awt.Color(0, 102, 204));
-        btnLista.setForeground(new java.awt.Color(255, 255, 255));
-        btnLista.setText("Lista");
-        btnLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListacadastrarCliente(evt);
-            }
-        });
 
         btnExcluir.setBackground(new java.awt.Color(255, 0, 0));
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
@@ -267,16 +257,14 @@ public class CadCliente extends javax.swing.JInternalFrame{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSalvarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnPdocumento))
-                        .addGap(0, 112, Short.MAX_VALUE))))
+                        .addGap(0, 248, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTitulo)
-                    .addGap(0, 351, Short.MAX_VALUE)))
+                    .addGap(0, 217, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +307,6 @@ public class CadCliente extends javax.swing.JInternalFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,13 +343,7 @@ public class CadCliente extends javax.swing.JInternalFrame{
         this.btnExcluir = btnExcluir;
     }
 
-    public JButton getBtnLista() {
-        return btnLista;
-    }
-
-    public void setBtnLista(JButton btnLista) {
-        this.btnLista = btnLista;
-    }
+  
 
     public JButton getBtnSalvarCliente() {
         return btnSalvarCliente;
@@ -522,7 +503,7 @@ public class CadCliente extends javax.swing.JInternalFrame{
         cliente.setEmail(this.getTxtEmail().getText());
         String documento = this.getTxtDocumento().getText().replace(".","");
         cliente.setDocumento(documento.replace("-",""));
-        cliente.setIdCliente(Integer.parseInt(this.getTxtCodigoCliente().getText()));
+        cliente.setIdCliente(Integer.parseInt(this.getTxtCodigoCliente().getText().equals("")? "0" : this.getTxtCodigoCliente().getText()));
         System.out.println("id: "+this.getTxtCodigoCliente().getText() );
         if(this.getTxtCodigoCliente().getText().equals("")){
             cliente.inserir();
@@ -535,10 +516,6 @@ public class CadCliente extends javax.swing.JInternalFrame{
         }
         
     }//GEN-LAST:event_cadastrarCliente
-
-    private void btnListacadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListacadastrarCliente
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListacadastrarCliente
 
     private void btnExcluircadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluircadastrarCliente
         // TODO add your handling code here:
@@ -577,8 +554,11 @@ public class CadCliente extends javax.swing.JInternalFrame{
             }
             if(!this.getTxtCodigoCliente().getText().equals("")){
                 this.getBtnSalvarCliente().setText("Alterar");
+                this.getLblTitulo().setText("Alterar Cliente");
+                
             }else{
                 this.getBtnSalvarCliente().setText("Salvar");
+                this.getLblTitulo().setText("Cadastrar Cliente");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -596,13 +576,13 @@ public class CadCliente extends javax.swing.JInternalFrame{
                 this.getTxtTel().setText("");
                 this.getSlctUf().setSelectedIndex(0);  
                 this.getBtnSalvarCliente().setText("Salvar");
+                this.getLblTitulo().setText("Cadastrar Cliente");
     }//GEN-LAST:event_btnLimparpesquisarCpfCliente
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnLista;
     private javax.swing.JLabel btnPdocumento;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarCliente;
