@@ -474,40 +474,39 @@ public class CadPagamento extends javax.swing.JInternalFrame {
     private void btnSalvarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPagamentoActionPerformed
         // TODO add your handling code here:
         Pagamento pagamento = new Pagamento();
-       Divida div = new Divida();
-        div.getIdDivida();
-        div.getCredor().setNomePessoa();
-        div.get
-       pagamento.getDivida().setIdDivida(Integer.parseInt(this.getTxtDivida().getText()));
+        Divida div = new Divida();
+        div.setIdDivida(Integer.parseInt(this.getTxtDivida().getText()));
         pagamento.setIdpag(Integer.parseInt(this.getTxtCodigoPagamento().getText().equals("") ? "0" : this.getTxtCodigoPagamento().getText()));
         String valor = this.getTxtValor().getText().replace(".", "");
         valor = valor.replace(",", ".");
         pagamento.setValorpago(Double.parseDouble(valor));
         String divida = this.getTxtvalorDivida().getText().replace(".", "");
         divida = divida.replace(",", ".");
-        pagamento.getDivida().setValorDivida(Double.parseDouble(divida));
+        div.setValorDivida(Double.parseDouble(divida));
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         try {
             pagamento.setData_pagamento(formatar.parse(this.getTxtDataPg().getText()));
-            pagamento.getDivida().setDataAtualizacao(formatar.parse(this.getTxtDataAtu().getText()));
+            div.setDataAtualizacao(formatar.parse(this.getTxtDataAtu().getText()));
         } catch (ParseException ex) {
             Logger.getLogger(CadPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }
+        pagamento.setDivida(div);
         //Converter para duas casas decimais
         DecimalFormatSymbols x = new DecimalFormatSymbols();
         x.setDecimalSeparator('.');
         DecimalFormat decimalForm = new DecimalFormat("##.##", x);
         //Verificar  a data de atualização 
         long diferenca = ((pagamento.getDivida().getDataAtualizacao().getTime() - pagamento.getData_pagamento().getTime()) + 3600000) / 86400000L;
-        if (diferenca < 0) {
+        System.out.println("Diferença: "+diferenca);
+        if (diferenca > 0) {  
+            //solucionar juros
             double multa = (pagamento.getDivida().getValorDivida() + (pagamento.getDivida().getValorDivida() * 2 / 100));
-    
             double juros = multa + (multa * (Math.abs(diferenca) * 0.35) / 100);
             System.out.println("Juros " + juros);
             pagamento.getDivida().setValorDivida(Double.parseDouble(decimalForm.format(juros)));
             this.getTxtvalorDivida().setText(String.valueOf(decimalForm.format(juros)));
         }
-        if(this.getTxtDataPg().getText().equals("")){
+        if(this.getTxtCodigoPagamento().getText().equals("")){
             try {
                 pagamento.realizarPagamento(pagamento);
             } catch (ParseException ex) {
@@ -572,6 +571,17 @@ public class CadPagamento extends javax.swing.JInternalFrame {
 
     private void btnLimparpesquisarCpfCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparpesquisarCpfCliente
         // TODO add your handling code here:
+        this.getTxtCodigoPagamento().setText("");
+        this.getTxtCredor().setText("");
+        this.getTxtPdocumento().setText("");
+        this.getTxtCodigoPagamento().setText("");
+        this.getTxtDataAtu().setText("");
+        this.getTxtDataPg().setText("");
+        this.getTxtDivida().setText("");
+        this.getTxtDevedor().setText("");
+        this.getTxtValor().setText("");
+        this.getTxtvalorDivida().setText("");
+        this.getSlcAcao().setSelectedItem("Pagar");
 
     }//GEN-LAST:event_btnLimparpesquisarCpfCliente
 
