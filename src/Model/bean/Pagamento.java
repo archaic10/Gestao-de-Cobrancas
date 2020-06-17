@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -72,40 +73,49 @@ public class Pagamento {
     public void setValorpago(double valorpago) {
         this.valorpago = valorpago;
     }
-     public void realizarPagamento(Pagamento pagamento) throws ParseException, SQLException {
+     public boolean realizarPagamento(Pagamento pagamento) throws ParseException, SQLException {
         if (this.getValorpago() < this.getDivida().getValorDivida()) {
             JOptionPane.showMessageDialog(null, "O pagamento não pode ser inferior a dívida!", "Erro", JOptionPane.WARNING_MESSAGE);
+            return false;
         } else {
             PagamentoDAO pagamentoDao = new PagamentoDAO();
             if (pagamentoDao.insert(this)) {                    
                 JOptionPane.showMessageDialog(null, "Pagamento realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);   
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Falha ao realizar pagamento!", "Erro", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
         }
     }
-    public void alterarPagamento(Pagamento pagamento){
+    public boolean alterarPagamento(Pagamento pagamento){
         PagamentoDAO pagamentoDao = new PagamentoDAO();
         if (this.getValorpago() < this.getDivida().getValorDivida()) {
             JOptionPane.showMessageDialog(null, "O pagamento não pode ser inferior a dívida!", "Erro", JOptionPane.WARNING_MESSAGE);
+            return false;
         } else {
             if (pagamentoDao.update(this)) {
-                 JOptionPane.showMessageDialog(null, "Pagamento alterado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);   
+                JOptionPane.showMessageDialog(null, "Pagamento alterado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);   
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Falha ao alterar pagamento!", "Erro", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
         }
     }
-    public void excluir(int codigo) {
+    public boolean excluir(int codigo) {
         PagamentoDAO pagamentoDao = new PagamentoDAO();
         try{
             if (pagamentoDao.delete(codigo)) {
                 JOptionPane.showMessageDialog(null, "Pagamento excluido com suecesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Não é possível excluir esse pagamento!", "Erro", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
         }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+             return false;
         }
     }
     public ArrayList<Pagamento> listarPagamento(){
@@ -131,11 +141,11 @@ public class Pagamento {
         }
         return null;    
     }
-    public ArrayList<Divida> obterDividas(String documento){
+    public ArrayList<Divida> obterDividas(String filtro,String documento){
         DividaDAO divida = new DividaDAO();
-        
+        filtro = filtro == "Pagar"? "Não pagas" : "Pagas";
         try {
-            return divida.obter("", documento);
+            return divida.obter(filtro, documento);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -149,10 +159,14 @@ public class Pagamento {
         Date dataInicial = new SimpleDateFormat(formato).parse(dataInicio);
         Date dataFinal = new SimpleDateFormat(formato).parse(dataFim);
         String resultado = "";
-        
+        DecimalFormatSymbols x = new DecimalFormatSymbols();         
+        x.setDecimalSeparator('.');
+        Locale BRAZIL = new Locale("pt","BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
+        DecimalFormat decimalForm = new DecimalFormat("¤ ###,###,##0.00",REAL);
         try {
             for(Pagamento pagamentos : pagamentoDao.obterFaturamento(dataInicial,dataFinal)){
-                resultado = "O faturamento entre "+dataInicio+" e "+dataFim+" é : "+pagamentos.getValorpago();
+                resultado = "O faturamento entre "+dataInicio+" e "+dataFim+" é : "+decimalForm.format(pagamentos.getValorpago());
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

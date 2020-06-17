@@ -57,6 +57,8 @@ public class RelatorioFaturamento extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 255));
+        setClosable(true);
+        setIconifiable(true);
 
         try {
             txtDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));

@@ -63,7 +63,7 @@ public class DividaDAO {
                 query+= "INNER JOIN pagamento pg ON dv.cod_divida = pg.cod_divida "; 
             break;
             case "Não pagas":
-                query += "WHERE pg.valor_pago IS NULL ";
+                query += " LEFT JOIN pagamento pg ON dv.cod_divida = pg.cod_divida WHERE pg.valor_pago IS NULL ";
             break;
         }
         System.out.println(query);

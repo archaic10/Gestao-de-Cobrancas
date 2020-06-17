@@ -7,9 +7,12 @@ package Model.bean;
 
 
 import View.table.PagamentoTable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,8 +28,13 @@ public class PagamentoTableModel {
     public void popularTabela(ArrayList<Pagamento> dadosPagamento){
         DefaultTableModel tableModel = (DefaultTableModel) this.view.getTabelaPagamento().getModel();
          tableModel.setNumRows(0);
-          
+          DecimalFormatSymbols x = new DecimalFormatSymbols();
+        x.setDecimalSeparator('.');
+        Locale BRAZIL = new Locale("pt","BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
+        DecimalFormat decimalForm = new DecimalFormat("¤ ###,###,##0.00",REAL);
         SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
+      
          for(Pagamento   pagamentos :dadosPagamento){
              
              tableModel.addRow(new Object[]{           
@@ -34,9 +42,9 @@ public class PagamentoTableModel {
                 pagamentos.getDivida().getIdDivida(),                
                 pagamentos.getDivida().getDevedor().getNomePessoa(),
                 pagamentos.getDivida().getDevedor().getDocumento(),
-                pagamentos.getDivida().getValorDivida(),
+                decimalForm.format(pagamentos.getDivida().getValorDivida()),
                 pagamentos.getDivida().getCredor().getNomePessoa(),
-                pagamentos.getValorpago(),              
+                decimalForm.format(pagamentos.getValorpago()),              
                 formatador.format(pagamentos.getData_pagamento()),
                 formatador.format(pagamentos.getDivida().getDataAtualizacao())
            });  

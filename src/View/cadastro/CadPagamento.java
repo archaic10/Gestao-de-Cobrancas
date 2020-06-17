@@ -30,6 +30,9 @@ public class CadPagamento extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadPagamento
      */
+    private boolean valida = true;
+    private double comapraMulta =0;
+    private double dividaOrig =0;
     private static CadPagamento instancia  = null;
 
     public static CadPagamento getInstancia() {
@@ -482,6 +485,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
         pagamento.setValorpago(Double.parseDouble(valor));
         String divida = this.getTxtvalorDivida().getText().replace(".", "");
         divida = divida.replace(",", ".");
+        System.out.println("magic "+divida);
         div.setValorDivida(Double.parseDouble(divida));
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -498,24 +502,68 @@ public class CadPagamento extends javax.swing.JInternalFrame {
         //Verificar  a data de atualização 
         long diferenca = ((pagamento.getDivida().getDataAtualizacao().getTime() - pagamento.getData_pagamento().getTime()) + 3600000) / 86400000L;
         System.out.println("Diferença: "+diferenca);
-        if (diferenca > 0) {  
-            //solucionar juros
-            double multa = (pagamento.getDivida().getValorDivida() + (pagamento.getDivida().getValorDivida() * 2 / 100));
-            double juros = multa + (multa * (Math.abs(diferenca) * 0.35) / 100);
-            System.out.println("Juros " + juros);
-            pagamento.getDivida().setValorDivida(Double.parseDouble(decimalForm.format(juros)));
-            this.getTxtvalorDivida().setText(String.valueOf(decimalForm.format(juros)));
+        if(dividaOrig == 0){
+            dividaOrig = pagamento.getDivida().getValorDivida();
+        }
+        if (diferenca < 0) {  
+            /*Se a data atualização for menor que a data pagamento
+            *verifique se a multa e juros já foram atribuidos
+            */
+            if(valida == true){
+                double multa = (dividaOrig + (pagamento.getDivida().getValorDivida() * 2 / 100));
+                double juros = multa + (multa * (Math.abs(diferenca) * 0.35) / 100);
+                System.out.println("Juros " + juros);
+                pagamento.getDivida().setValorDivida(Double.parseDouble(decimalForm.format(juros)));
+                this.getTxtvalorDivida().setText(decimalForm.format(String.valueOf(decimalForm.format(juros))));
+                this.getTxtValor().setText(String.valueOf(this.getTxtValor().getText()));
+                valida = false;
+                comapraMulta = (multa * (Math.abs(diferenca) * 0.35) / 100);
+             
+                
+            }
+            /*se a validação for bem sucedida
+            *retorne as variaveis globais ao seu estado original
+            */
+        }else{
+            valida = true;
+            comapraMulta =0;
+            dividaOrig =0;
         }
         if(this.getTxtCodigoPagamento().getText().equals("")){
             try {
-                pagamento.realizarPagamento(pagamento);
+               if(pagamento.realizarPagamento(pagamento)){
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtCredor().setText("");
+                this.getTxtPdocumento().setText("");
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtDataAtu().setText("");
+                this.getTxtDataPg().setText("");
+                this.getTxtDivida().setText("");
+                this.getTxtDevedor().setText("");
+                this.getTxtValor().setText("");
+                this.getTxtvalorDivida().setText("");
+                this.getSlcAcao().setSelectedItem("Pagar");
+               }
+                
             } catch (ParseException ex) {
                 Logger.getLogger(CadPagamento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(CadPagamento.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            pagamento.alterarPagamento(pagamento);
+            if(pagamento.alterarPagamento(pagamento)){
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtCredor().setText("");
+                this.getTxtPdocumento().setText("");
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtDataAtu().setText("");
+                this.getTxtDataPg().setText("");
+                this.getTxtDivida().setText("");
+                this.getTxtDevedor().setText("");
+                this.getTxtValor().setText("");
+                this.getTxtvalorDivida().setText("");
+                this.getSlcAcao().setSelectedItem("Pagar");
+            }
         }
     }//GEN-LAST:event_btnSalvarPagamentoActionPerformed
 
@@ -558,6 +606,27 @@ public class CadPagamento extends javax.swing.JInternalFrame {
 
     private void btnExcluircadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluircadastrarCliente
         // TODO add your handling code here:
+        Pagamento pagamento = new Pagamento();
+        
+        if(this.getTxtCodigoPagamento().getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Não há registros a serem excluídos!", "Erro", JOptionPane.WARNING_MESSAGE);
+        }else{
+            int codigo = Integer.parseInt(this.getTxtCodigoPagamento().getText());
+                if(pagamento.excluir(codigo)){
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtCredor().setText("");
+                this.getTxtPdocumento().setText("");
+                this.getTxtCodigoPagamento().setText("");
+                this.getTxtDataAtu().setText("");
+                this.getTxtDataPg().setText("");
+                this.getTxtDivida().setText("");
+                this.getTxtDevedor().setText("");
+                this.getTxtValor().setText("");
+                this.getTxtvalorDivida().setText("");
+                this.getSlcAcao().setSelectedItem("Pagar");
+            }
+        }
+  
         
     }//GEN-LAST:event_btnExcluircadastrarCliente
 
@@ -593,7 +662,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
         if(this.getSlcAcao().getSelectedItem().equals("Pagar")){
             this.getLblTitulo().setText("Realizar Pagamento");
             this.btnSalvarPagamento.setText("Salvar");
-            for(Divida dv :pagamento.obterDividas(documento)){               
+            for(Divida dv :pagamento.obterDividas(this.getSlcAcao().getSelectedItem().toString(),documento)){               
                 this.getTxtCredor().setText(dv.getCredor().getNomePessoa());
                 this.getTxtDevedor().setText(dv.getDevedor().getNomePessoa());
                 SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
