@@ -61,6 +61,7 @@ public class PagamentoTable extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(102, 153, 255));
         setClosable(true);
         setIconifiable(true);
+        setTitle("Lista Pagamento");
 
         btnAtualizar.setBackground(new java.awt.Color(0, 102, 204));
         btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,10 +125,10 @@ public class PagamentoTable extends javax.swing.JInternalFrame {
                                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblCpf))
                         .addGap(465, 706, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(380, 380, 380))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

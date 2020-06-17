@@ -60,6 +60,7 @@ public class ClienteTable extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(102, 153, 255));
         setClosable(true);
         setIconifiable(true);
+        setTitle("Lista Cliente");
 
         tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +122,7 @@ public class ClienteTable extends javax.swing.JInternalFrame {
                                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
+                        .addGap(353, 353, 353)
                         .addComponent(jLabel1)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
