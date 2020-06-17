@@ -8,13 +8,12 @@ package View;
 import View.cadastro.CadCliente;
 import View.cadastro.CadDivida;
 import View.cadastro.CadPagamento;
-import View.consulta.ConsCliente;
+
 import View.table.ClienteTable;
 import View.table.DividaTable;
 import View.table.PagamentoTable;
 import View.table.RelatorioFaturamento;
 import javax.swing.JDesktopPane;
-
 
 /**
  *
@@ -157,7 +156,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-         if(!DividaTable.getInstancia().isVisible()){
+        if (!DividaTable.getInstancia().isVisible()) {
             getPainel().add(DividaTable.getInstancia());
             DividaTable.getInstancia().setVisible(true);
         }
@@ -165,7 +164,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        if(!PagamentoTable.getInstancia().isVisible()){
+        if (!PagamentoTable.getInstancia().isVisible()) {
             getPainel().add(PagamentoTable.getInstancia());
             PagamentoTable.getInstancia().setVisible(true);
         }
@@ -173,7 +172,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void abrirTelaConsCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaConsCliente
         // TODO add your handling code here:
-         if(!ClienteTable.getInstancia().isVisible()){
+        if (!ClienteTable.getInstancia().isVisible()) {
             getPainel().add(ClienteTable.getInstancia());
             ClienteTable.getInstancia().setVisible(true);
         }
@@ -181,7 +180,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void abrirCadCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirCadCliente
         // TODO add your handling code here:
-       if(!CadCliente.getInstancia().isVisible()){
+        if (!CadCliente.getInstancia().isVisible()) {
             painel.add(CadCliente.getInstancia());
             CadCliente.getInstancia().setVisible(true);
         }
@@ -189,7 +188,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void abrirTelaCadDivida(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaCadDivida
         // TODO add your handling code here:
-        if(!CadDivida.getInstancia().isVisible()){
+        if (!CadDivida.getInstancia().isVisible()) {
             painel.add(CadDivida.getInstancia());
             CadDivida.getInstancia().setVisible(true);
         }
@@ -197,7 +196,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void abrirTelaCadPagamento(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaCadPagamento
         // TODO add your handling code here:
-        if(!CadPagamento.getInstancia().isVisible()){
+        if (!CadPagamento.getInstancia().isVisible()) {
             painel.add(CadPagamento.getInstancia());
             CadPagamento.getInstancia().setVisible(true);
         }
@@ -205,7 +204,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        if(!RelatorioFaturamento.getInstancia().isVisible()){
+        if (!RelatorioFaturamento.getInstancia().isVisible()) {
             getPainel().add(RelatorioFaturamento.getInstancia());
             RelatorioFaturamento.getInstancia().setVisible(true);
         }

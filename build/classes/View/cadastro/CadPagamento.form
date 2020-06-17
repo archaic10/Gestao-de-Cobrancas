@@ -9,7 +9,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,25,0,0,2,16"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,25,0,0,2,-77"/>
     <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,1,-120,0,0,0,81"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
@@ -43,36 +43,19 @@
                           <Component id="txtvalorDivida" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="txtDataAtu" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtValor" max="32767" attributes="0"/>
-                          <Component id="txtDataPg" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblDataPag" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblValorPg" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtValor" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Component id="lblCredor" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCodigoPagamento" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="lblCodPag1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDivida" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDivida" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDevedor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCredor" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCredor" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
+                              <Component id="txtDataPg" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -85,18 +68,54 @@
                           </Group>
                           <Component id="lblValorDivida" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDataAtu" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtPdocumento" min="-2" pref="200" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                      <Component id="lblDataPag" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblDevedor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtCredor" min="-2" pref="190" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblCodPag1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCodigoPagamento" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lblDivida" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
+                              <Component id="txtDivida" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPdocumento" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="btnPdocumento" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnPdocumentoCredor" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="txtPdocumentoCredor" min="-2" pref="200" max="-2" attributes="0"/>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
                               <Component id="slcAcao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnPesquisar" min="-2" pref="88" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnPdocumento" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -109,13 +128,17 @@
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="btnPdocumento" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnPdocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPdocumentoCredor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtPdocumento" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="slcAcao" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txtPdocumentoCredor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -149,7 +172,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCredor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCredor" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDevedor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -380,7 +403,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Documento:"/>
+        <Property name="text" type="java.lang.String" value="Documento Devedor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="slcAcao">
@@ -400,6 +423,24 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPdocumentoCredor">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="btnPdocumentoCredor">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Documento Credor:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

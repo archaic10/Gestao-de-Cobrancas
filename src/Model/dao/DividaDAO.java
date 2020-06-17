@@ -147,6 +147,60 @@ public class DividaDAO {
         }
     }
     
+     public ArrayList<Divida> obterCredorDevedor(String filtro,String documento, String documentoCredor) throws Exception {
+
+  
+         String query = "SELECT DISTINCT dv.cod_divida, cl.nome AS devedor, cl.documento AS devedor_documento, dv.valor_divida, cli.nome as credor, dv.data_atualizacao "
+                + "FROM divida dv "
+                + "INNER JOIN cliente cl ON dv.devedor = cl.cod_cliente "
+                + "INNER JOIN cliente cli ON dv.credor = cli.cod_cliente ";
+//        System.out.println("cpf: "+documento.length());
+        switch(filtro){       
+            case "Pagas":
+                query+= "INNER JOIN pagamento pg ON dv.cod_divida = pg.cod_divida "; 
+            break;
+            case "Não pagas":
+                query +="LEFT JOIN pagamento pg ON dv.cod_divida = pg.cod_divida "+ 
+                        "WHERE pg.valor_pago IS NULL ";
+            break;
+        }
+      
+        if(documento.length() > 0){
+            if(filtro == "Não pagas"){
+                query += " AND cl.documento = "+documento+" AND cli.documento="+documentoCredor;
+            }else{
+                query += "WHERE cl.documento = "+documento;
+                
+            }
+            
+        }
+        System.out.println(query);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareCall(query);
+            rs = stmt.executeQuery();
+            listaDivida = new ArrayList<Divida>();
+            while (rs.next()) {
+                Pessoa credor = new Pessoa();
+                Pessoa devedor = new Pessoa();
+                Integer cod_divida = rs.getInt(1);
+                devedor.setNomePessoa(rs.getString(2));
+                devedor.setDocumento(rs.getString(3));
+                double valor_divida = Double.parseDouble(rs.getString(4));
+                credor.setNomePessoa(rs.getString(5));
+                Date data_atualizacao = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString(6));
+                listaDivida.add(new Divida(cod_divida, credor, data_atualizacao, valor_divida, devedor));
+            }
+
+            return listaDivida;
+        } catch (SQLException sqle) { 
+        
+            throw new Exception(sqle);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+    }
      public ArrayList<Divida> obter(String filtro,String documento,int cod) throws Exception {
 
        String query = "SELECT DISTINCT dv.cod_divida, cl.nome AS devedor, cl.documento AS devedor_documento, dv.valor_divida, cli.nome as credor, dv.data_atualizacao "

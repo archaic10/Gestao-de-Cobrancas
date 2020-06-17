@@ -212,6 +212,8 @@ public class CadPagamento extends javax.swing.JInternalFrame {
         txtPdocumento = new javax.swing.JFormattedTextField();
         btnPdocumento = new javax.swing.JLabel();
         slcAcao = new javax.swing.JComboBox<>();
+        txtPdocumentoCredor = new javax.swing.JFormattedTextField();
+        btnPdocumentoCredor = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 255));
         setClosable(true);
@@ -341,7 +343,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
 
         btnPdocumento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnPdocumento.setForeground(new java.awt.Color(0, 0, 0));
-        btnPdocumento.setText("Documento:");
+        btnPdocumento.setText("Documento Devedor:");
 
         slcAcao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pagar", "Alterar" }));
         slcAcao.addItemListener(new java.awt.event.ItemListener() {
@@ -360,6 +362,16 @@ public class CadPagamento extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            txtPdocumentoCredor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        btnPdocumentoCredor.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnPdocumentoCredor.setForeground(new java.awt.Color(0, 0, 0));
+        btnPdocumentoCredor.setText("Documento Credor:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -375,29 +387,16 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtvalorDivida, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDataAtu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor)
-                            .addComponent(txtDataPg)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDataPag)
-                                    .addComponent(lblValorPg))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCodPag1))
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDivida)
-                            .addComponent(txtDivida)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDevedor)
-                        .addGap(243, 243, 243)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCredor)
-                            .addComponent(txtCredor)))
+                                    .addComponent(lblValorPg)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCredor)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(283, 283, 283)
+                                .addComponent(txtDataPg))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDevedor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,17 +405,43 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblValorDivida)
-                            .addComponent(lblDataAtu)
+                            .addComponent(lblDataAtu))
+                        .addGap(217, 217, 217)
+                        .addComponent(lblDataPag)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDevedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCredor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCodPag1)
+                            .addComponent(txtCodigoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(slcAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(btnPesquisar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLimpar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDivida)
+                                .addGap(146, 146, 146))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(283, 283, 283)
+                                .addComponent(txtDivida))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPdocumento))
-                        .addGap(0, 27, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnPdocumentoCredor)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPdocumentoCredor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(slcAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLimpar)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -425,13 +450,16 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addComponent(lblTitulo)
                 .addGap(8, 8, 8)
-                .addComponent(btnPdocumento)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPdocumento)
+                    .addComponent(btnPdocumentoCredor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar)
                     .addComponent(btnLimpar)
-                    .addComponent(slcAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(slcAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPdocumentoCredor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodPag1)
@@ -471,7 +499,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19))
         );
 
-        setBounds(392, 81, 528, 537);
+        setBounds(392, 81, 691, 537);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPagamentoActionPerformed
@@ -492,7 +520,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
             pagamento.setData_pagamento(formatar.parse(this.getTxtDataPg().getText()));
             div.setDataAtualizacao(formatar.parse(this.getTxtDataAtu().getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(CadPagamento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         pagamento.setDivida(div);
         //Converter para duas casas decimais
@@ -514,7 +542,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                 double juros = multa + (multa * (Math.abs(diferenca) * 0.35) / 100);
                 System.out.println("Juros " + juros);
                 pagamento.getDivida().setValorDivida(Double.parseDouble(decimalForm.format(juros)));
-                this.getTxtvalorDivida().setText(decimalForm.format(String.valueOf(decimalForm.format(juros))));
+                this.getTxtvalorDivida().setText(String.valueOf(decimalForm.format(juros)));
                 this.getTxtValor().setText(String.valueOf(this.getTxtValor().getText()));
                 valida = false;
                 comapraMulta = (multa * (Math.abs(diferenca) * 0.35) / 100);
@@ -623,6 +651,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
                 this.getTxtDevedor().setText("");
                 this.getTxtValor().setText("");
                 this.getTxtvalorDivida().setText("");
+                this.getTxtPdocumentoCredor().setText("");
                 this.getSlcAcao().setSelectedItem("Pagar");
             }
         }
@@ -651,48 +680,63 @@ public class CadPagamento extends javax.swing.JInternalFrame {
         this.getTxtValor().setText("");
         this.getTxtvalorDivida().setText("");
         this.getSlcAcao().setSelectedItem("Pagar");
+        this.getTxtPdocumentoCredor().setText("");
 
     }//GEN-LAST:event_btnLimparpesquisarCpfCliente
 
     private void btnPesquisarpesquisarCpfCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarpesquisarCpfCliente
         // TODO add your handling code here:
+        
         Pagamento pagamento = new Pagamento();
         String documento = this.getTxtPdocumento().getText().replace(".","");
+        String documentoCredor = this.getTxtPdocumentoCredor().getText().replace(".","");
         documento = documento.replace("-", "");
-        if(this.getSlcAcao().getSelectedItem().equals("Pagar")){
-            this.getLblTitulo().setText("Realizar Pagamento");
-            this.btnSalvarPagamento.setText("Salvar");
-            for(Divida dv :pagamento.obterDividas(this.getSlcAcao().getSelectedItem().toString(),documento)){               
-                this.getTxtCredor().setText(dv.getCredor().getNomePessoa());
-                this.getTxtDevedor().setText(dv.getDevedor().getNomePessoa());
-                SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
-                this.getTxtDataAtu().setText(formatador.format(dv.getDataAtualizacao()));
-                this.getTxtDivida().setText(Integer.toString(dv.getIdDivida()));               
-                String divida = Double.toString(dv.getValorDivida());
-                divida = divida.replace(".", ","); 
-                this.getTxtvalorDivida().setText(divida);
+        documentoCredor = documentoCredor.replace("-", "");
+        if(documento.equals("           ") || documentoCredor.equals("           ")){
+            JOptionPane.showMessageDialog(null, "Favor informar o cpf do credor e devedor para prosseguir com a operação!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+         }else{    
+            if(this.getSlcAcao().getSelectedItem().equals("Pagar")){
+                this.getLblTitulo().setText("Realizar Pagamento");
+                this.btnSalvarPagamento.setText("Salvar");
+                for(Divida dv :pagamento.obterDividaDetalhada(this.getSlcAcao().getSelectedItem().toString(),documento,documentoCredor)){               
+                    this.getTxtCredor().setText(dv.getCredor().getNomePessoa());
+                    this.getTxtDevedor().setText(dv.getDevedor().getNomePessoa());
+                    SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
+                    this.getTxtDataAtu().setText(formatador.format(dv.getDataAtualizacao()));
+                    this.getTxtDivida().setText(Integer.toString(dv.getIdDivida()));               
+                    String divida = Double.toString(dv.getValorDivida());
+                    divida = divida.replace(".", ","); 
+                    this.getTxtvalorDivida().setText(divida);
+                }
+            }else{
+                this.getLblTitulo().setText("Alterar Pagamento");
+                this.btnSalvarPagamento.setText("Alterar");
+                for(Pagamento pg :pagamento.buscarPorDocumento(documento)){
+                    this.getTxtCodigoPagamento().setText(Integer.toString(pg.getIdpag()));
+                    this.getTxtCredor().setText(pg.getDivida().getCredor().getNomePessoa());
+                    this.getTxtDevedor().setText(pg.getDivida().getDevedor().getNomePessoa());
+                    SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
+                    this.getTxtDataAtu().setText(formatador.format(pg.getDivida().getDataAtualizacao()));
+                    this.getTxtDivida().setText(Integer.toString(pg.getDivida().getIdDivida()));
+                    String valor =Double.toString(pg.getValorpago()); 
+                    valor = valor.replace(".", ",");
+                    String divida = Double.toString(pg.getDivida().getValorDivida());
+                    divida = divida.replace(".", ","); 
+                    this.getTxtvalorDivida().setText(divida);
+                    this.getTxtValor().setText(valor);
+                } 
             }
-        }else{
-            this.getLblTitulo().setText("Alterar Pagamento");
-            this.btnSalvarPagamento.setText("Alterar");
-            for(Pagamento pg :pagamento.buscarPorDocumento(documento)){
-                this.getTxtCodigoPagamento().setText(Integer.toString(pg.getIdpag()));
-                this.getTxtCredor().setText(pg.getDivida().getCredor().getNomePessoa());
-                this.getTxtDevedor().setText(pg.getDivida().getDevedor().getNomePessoa());
-                SimpleDateFormat  formatador  =  new SimpleDateFormat("dd/MM/yyyy");
-                this.getTxtDataAtu().setText(formatador.format(pg.getDivida().getDataAtualizacao()));
-                this.getTxtDivida().setText(Integer.toString(pg.getDivida().getIdDivida()));
-                String valor =Double.toString(pg.getValorpago()); 
-                valor = valor.replace(".", ",");
-                String divida = Double.toString(pg.getDivida().getValorDivida());
-                divida = divida.replace(".", ","); 
-                this.getTxtvalorDivida().setText(divida);
-                this.getTxtValor().setText(valor);
-            } 
         }
-        
        
     }//GEN-LAST:event_btnPesquisarpesquisarCpfCliente
+
+    public JFormattedTextField getTxtPdocumentoCredor() {
+        return txtPdocumentoCredor;
+    }
+
+    public void setTxtPdocumentoCredor(JFormattedTextField txtPdocumentoCredor) {
+        this.txtPdocumentoCredor = txtPdocumentoCredor;
+    }
 
     public JLabel getLblTitulo() {
         return lblTitulo;
@@ -727,6 +771,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel btnPdocumento;
+    private javax.swing.JLabel btnPdocumentoCredor;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarPagamento;
     private javax.swing.JLabel lblCodPag1;
@@ -746,6 +791,7 @@ public class CadPagamento extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDevedor;
     private javax.swing.JTextField txtDivida;
     private javax.swing.JFormattedTextField txtPdocumento;
+    private javax.swing.JFormattedTextField txtPdocumentoCredor;
     private javax.swing.JFormattedTextField txtValor;
     private javax.swing.JFormattedTextField txtvalorDivida;
     // End of variables declaration//GEN-END:variables

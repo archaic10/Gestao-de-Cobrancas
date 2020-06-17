@@ -150,7 +150,20 @@ public class Pagamento {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return null; 
+        
     }
+    public ArrayList<Divida> obterDividaDetalhada(String filtro,String documento, String documentoCredor){
+        DividaDAO divida = new DividaDAO();
+        filtro = filtro == "Pagar"? "Não pagas" : "Pagas";
+        try {
+            return divida.obterCredorDevedor(filtro, documento, documentoCredor);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        return null; 
+        
+    }
+    
     public String consultarFaturamento(String dataIni, String dataF) throws ParseException{
         PagamentoDAO pagamentoDao = new PagamentoDAO();
          String formato = "dd/MM/yyyy";
